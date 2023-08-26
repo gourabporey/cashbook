@@ -44,6 +44,12 @@ class EntryRepository {
     return this.#entries;
   }
 
+  addEntry(entry) {
+    this.#entries = this.#entries || [];
+    this.#entries.push(entry);
+    this.#update();
+  }
+
   findEntryOfId(id) {
     return this.getAll().find(matchId(id));
   }
