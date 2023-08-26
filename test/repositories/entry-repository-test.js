@@ -48,4 +48,42 @@ describe('EntryRepository', () => {
       assert.deepStrictEqual(expectedSecondEntry.toJSON(), secondEntry);
     });
   });
+
+  describe('findEntries', () => {
+    it('should find the entries of a specific user', (context) => {
+      const firstEntry = {
+        id: 0,
+        timeStamp: new Date().toUTCString(),
+        type: 'income',
+        amount: 800,
+        userId: 567,
+        category: 'grocery',
+        title: 'monday grocery',
+      };
+
+      const secondEntry = {
+        id: 1,
+        timeStamp: new Date().toUTCString(),
+        type: 'income',
+        amount: 800,
+        userId: 50,
+        category: 'grocery',
+        title: 'monday grocery',
+      };
+
+      const storedEntries = [firstEntry, secondEntry];
+
+      const fs = {
+        existsSync: context.mock.fn(() => true),
+        readFileSync: context.mock.fn(() => JSON.stringify(storedEntries)),
+      };
+
+      const entryRepo = new EntryRepository(null, fs);
+      entryRepo.getAll();
+
+      const actualEntries = entryRepo.findEntries({ userId: 50 });
+
+      assert.deepStrictEqual(actualEntries, [secondEntry]);
+    });
+  });
 });

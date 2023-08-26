@@ -21,6 +21,10 @@ class Entry {
     return this.#id;
   }
 
+  getUserId() {
+    return this.#userId;
+  }
+
   modify(data) {
     const lookUp = {
       type: (type) => (this.#type = type),
