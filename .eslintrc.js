@@ -10,7 +10,7 @@ module.exports = {
     'no-use-before-define': ['error'],
     'no-this-before-super': ['error'],
     'complexity': ['error', { max: 3 }],
-    'max-statements': ['error', 6],
+    'max-statements': ['error', 10],
     'max-params': ['error', { max: 3 }],
     'max-nested-callbacks': ['error', { max: 2 }],
     'no-const-assign': 'error',
@@ -27,7 +27,7 @@ module.exports = {
     'id-length': [
       'error',
       {
-        exceptions: ['a', 'b', 'x', 'y', 'z', 'io', 'id', '#id'],
+        exceptions: ['a', 'b', 'x', 'y', 'z', 'io', 'id', '#id', 'fs', '#fs'],
         min: 3,
         max: 24,
       },
