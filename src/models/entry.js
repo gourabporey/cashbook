@@ -5,14 +5,16 @@ class Entry {
   #amount;
   #userId;
   #category;
+  #timeStamp;
 
-  constructor({ id, userId, title, type, amount, category }) {
+  constructor({ id, userId, title, timeStamp, type, amount, category }) {
     this.#id = id;
     this.#type = type;
     this.#title = title;
     this.#userId = userId;
     this.#amount = amount;
     this.#category = category;
+    this.#timeStamp = timeStamp;
   }
 
   getId() {
@@ -23,6 +25,7 @@ class Entry {
     const lookUp = {
       type: (type) => (this.#type = type),
       title: (title) => (this.#title = title),
+      timeStamp: (timeStamp) => (this.#timeStamp = timeStamp),
       category: (category) => (this.#category = category),
       amount: (amount) => (this.#amount = amount),
     };
@@ -43,6 +46,7 @@ class Entry {
       userId: this.#userId,
       amount: this.#amount,
       category: this.#category,
+      timeStamp: this.#timeStamp,
     };
   }
 }
