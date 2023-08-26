@@ -15,9 +15,12 @@ class Entry {
     this.#category = category;
   }
 
+  getId() {
+    return this.#id;
+  }
+
   modify(data) {
     const lookUp = {
-      id: (id) => (this.#id = id),
       type: (type) => (this.#type = type),
       title: (title) => (this.#title = title),
       category: (category) => (this.#category = category),
@@ -41,10 +44,6 @@ class Entry {
       amount: this.#amount,
       category: this.#category,
     };
-  }
-
-  static fromJSON(properties) {
-    return new Entry(properties);
   }
 }
 

@@ -73,4 +73,11 @@ describe('Entry', () => {
       assert.deepStrictEqual(entry.modify(newData).toJSON(), expectedData);
     });
   });
+
+  describe('getId', () => {
+    it('should return the id of the entry', () => {
+      const entry = new Entry({ id: 0 });
+      assert.strictEqual(entry.getId(), 0);
+    });
+  });
 });
