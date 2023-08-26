@@ -5,12 +5,15 @@ const Entry = require('../../src/models/entry');
 describe('Entry', () => {
   describe('modify', () => {
     it('should not modify when no new Data is given', () => {
+      const timeStamp = new Date().toUTCString();
+
       const entryData = {
         id: 0,
         userId: 0,
         type: 'income',
         amount: 100,
         category: 'groceries',
+        timeStamp,
         title: 'Monday groceries',
       };
 
@@ -20,11 +23,14 @@ describe('Entry', () => {
     });
 
     it('should modify properties when valid data is given', () => {
+      const timeStamp = new Date().toUTCString();
+
       const entryData = {
         id: 0,
         userId: 0,
         type: 'income',
         amount: 100,
+        timeStamp,
         category: 'groceries',
         title: 'Monday groceries',
       };
@@ -37,6 +43,7 @@ describe('Entry', () => {
         userId: 0,
         type: 'income',
         amount: 500,
+        timeStamp,
         category: 'groceries',
         title: 'tuesday groceries',
       };
@@ -45,11 +52,14 @@ describe('Entry', () => {
     });
 
     it('should neglect invalid data when mixed data is given', () => {
+      const timeStamp = new Date().toUTCString();
+
       const entryData = {
         id: 0,
         userId: 0,
         type: 'income',
         amount: 100,
+        timeStamp,
         category: 'groceries',
         title: 'Monday groceries',
       };
@@ -66,6 +76,7 @@ describe('Entry', () => {
         userId: 0,
         type: 'income',
         amount: 500,
+        timeStamp,
         category: 'groceries',
         title: 'tuesday groceries',
       };
