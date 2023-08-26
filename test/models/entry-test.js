@@ -4,7 +4,7 @@ const Entry = require('../../src/models/entry');
 
 describe('Entry', () => {
   describe('modify', () => {
-    it('should should not modify when no new Data is given', () => {
+    it('should not modify when no new Data is given', () => {
       const entryData = {
         id: 0,
         userId: 0,
@@ -19,7 +19,7 @@ describe('Entry', () => {
       assert.deepStrictEqual(entry.modify({}).toJSON(), entryData);
     });
 
-    it('should should modify properties when valid data is given', () => {
+    it('should modify properties when valid data is given', () => {
       const entryData = {
         id: 0,
         userId: 0,
@@ -31,6 +31,35 @@ describe('Entry', () => {
 
       const entry = new Entry(entryData);
       const newData = { amount: 500, title: 'tuesday groceries' };
+
+      const expectedData = {
+        id: 0,
+        userId: 0,
+        type: 'income',
+        amount: 500,
+        category: 'groceries',
+        title: 'tuesday groceries',
+      };
+
+      assert.deepStrictEqual(entry.modify(newData).toJSON(), expectedData);
+    });
+
+    it('should neglect invalid data when mixed data is given', () => {
+      const entryData = {
+        id: 0,
+        userId: 0,
+        type: 'income',
+        amount: 100,
+        category: 'groceries',
+        title: 'Monday groceries',
+      };
+
+      const entry = new Entry(entryData);
+      const newData = {
+        amount: 500,
+        title: 'tuesday groceries',
+        random: 'this is a random data',
+      };
 
       const expectedData = {
         id: 0,
