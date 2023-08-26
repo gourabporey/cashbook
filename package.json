@@ -1,0 +1,19 @@
+{
+  "name": "cashbook",
+  "version": "1.0.0",
+  "description": "A simple expense tracker app",
+  "main": "server.js",
+  "scripts": {
+    "test": "node --test",
+    "start": "node server.js",
+    "lint": "eslint .",
+    "coverage": "nyc npm run test"
+  },
+  "author": "gourabporey",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.48.0",
+    "nyc": "^15.1.0",
+    "supertest": "^6.3.3"
+  }
+}
