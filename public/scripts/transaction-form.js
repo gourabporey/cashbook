@@ -21,6 +21,7 @@ const openForm = () => {
 
   const amountEntrySection = document.querySelector('#transaction-input-form');
   amountEntrySection.append(form);
+  amountEntrySection.classList.remove('hidden');
 
   hideEntryInput();
 };

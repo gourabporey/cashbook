@@ -1,8 +1,9 @@
 <html>
   <head>
     <title>Cashbook</title>
-    <script src="scripts/transaction-form.js"></script>
-    <script src="scripts/html-generator.js"></script>
+    <script src="/scripts/transaction-form.js"></script>
+    <script src="/scripts/html-generator.js"></script>
+    <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
     <main id="page-wrapper">
@@ -23,14 +24,24 @@
         </div>
       </div>
 
-      <div id="entries-log"></div>
-
       <div id="transaction-input-container">
-        <input type="button" value="+" onclick="openForm('income')" />
-        <input type="button" value="-" onclick="openForm('expense')" />
+        <input
+          type="button"
+          id="income"
+          class="transaction-input"
+          value="+"
+          onclick="openForm('income')" />
+        <input
+          type="button"
+          id="expense"
+          class="transaction-input"
+          value="-"
+          onclick="openForm('expense')" />
       </div>
 
-      <div id="transaction-input-form"></div>
+      <div id="transaction-input-form" class="hidden"></div>
+
+      <div id="entries-log"></div>
     </main>
   </body>
 </html>

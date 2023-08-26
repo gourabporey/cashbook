@@ -1,0 +1,81 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: system-ui, 'Helvetica Neue', sans-serif;
+  font-size: 18px;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+#page-wrapper {
+  width: 720px;
+  margin: 0 auto;
+  padding: 0 1em;
+}
+
+#page-wrapper > * {
+  padding: 1em;
+}
+
+header h1 {
+  text-align: center;
+}
+
+#summary {
+  display: flex;
+  gap: 1em;
+}
+
+.total-transaction {
+  width: 100%;
+  padding: 0.5em;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  border: 2px solid rgb(156, 156, 156);
+  border-radius: 50px;
+}
+
+#transaction-input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+#transaction-input-container > * {
+  padding: 0.2em;
+  border-radius: 10px;
+}
+
+.transaction-input {
+  width: 100px;
+}
+
+.hidden {
+  display: none;
+}
+
+#transaction-input-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.transaction-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.transaction-form > * {
+  padding: 0.2em;
+  border-radius: 10px;
+}
