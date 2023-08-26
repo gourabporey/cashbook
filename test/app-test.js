@@ -3,13 +3,15 @@ const { describe, it } = require('node:test');
 
 const { createApp } = require('../src/app.js');
 const EntryRepository = require('../src/repositories/entry-repository.js');
+const { generateId } = require('../src/id-generator.js');
 
 describe('App', () => {
   describe('GET /', () => {
     it('should serve the homepage', (_, done) => {
       const entryRepository = null;
+      const idGenerator = null;
 
-      const app = createApp({ entryRepository });
+      const app = createApp({ entryRepository, idGenerator });
 
       request(app)
         .get('/')
@@ -49,13 +51,49 @@ describe('App', () => {
 
       const entryRepository = new EntryRepository(null, fs, null);
 
-      const app = createApp({ entryRepository });
+      const app = createApp({ entryRepository, idGenerator: null });
 
       request(app)
         .get('/entries')
         .expect(200)
         .expect('content-type', /application\/json/)
         .expect(entries)
+        .end(done);
+    });
+  });
+
+  describe('POST /entries', () => {
+    it('should create a new entry and give back a json of created resource', (context, done) => {
+      const entries = [];
+
+      const fs = {
+        readFileSync: context.mock.fn(() => JSON.stringify(entries)),
+        existsSync: context.mock.fn(() => true),
+        writeFile: context.mock.fn(),
+      };
+
+      const entryRepository = new EntryRepository(null, fs, null);
+      const idGenerator = generateId();
+
+      const entryData = {
+        type: 'expense',
+        amount: 800,
+        category: 'grocery',
+        title: 'monday grocery',
+        timeStamp: new Date().toUTCString(),
+      };
+
+      const expectedData = { ...entryData, id: 0, userId: 0 };
+
+      const app = createApp({ entryRepository, idGenerator });
+
+      request(app)
+        .post('/entries')
+        .set('cookie', ['userId=0'])
+        .send(entryData)
+        .expect(201)
+        .expect('content-type', /application\/json/)
+        .expect(expectedData)
         .end(done);
     });
   });
