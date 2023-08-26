@@ -26,7 +26,11 @@ module.exports = {
     'no-cond-assign': 'error',
     'id-length': [
       'error',
-      { exceptions: ['a', 'b', 'x', 'y', 'z'], min: 3, max: 20 },
+      {
+        exceptions: ['a', 'b', 'x', 'y', 'z', 'io', 'id', '#id'],
+        min: 3,
+        max: 24,
+      },
     ],
   },
 };
