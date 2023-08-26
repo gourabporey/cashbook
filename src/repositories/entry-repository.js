@@ -22,10 +22,6 @@ class EntryRepository {
     return rawEntries.map((entryInfo) => new Entry(entryInfo));
   }
 
-  serializeEntries() {
-    return (this.#entries || []).map(entryToJSON);
-  }
-
   #update() {
     const entries = this.serializeEntries();
 
@@ -42,6 +38,10 @@ class EntryRepository {
       : [];
 
     return this.#entries;
+  }
+
+  serializeEntries() {
+    return this.getAll().map(entryToJSON);
   }
 
   addEntry(entry) {
