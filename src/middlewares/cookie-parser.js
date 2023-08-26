@@ -1,4 +1,4 @@
-const parseCookies = (cookies) =>
+const parseCookies = (cookies = '') =>
   Object.fromEntries(cookies.split('; ').map((kv) => kv.split('=')));
 
 const cookieParser = (req, _, next) => {
