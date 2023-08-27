@@ -98,8 +98,8 @@ describe('App', () => {
     });
   });
 
-  describe('PATCH /entries/:id', () => {
-    it('should change the entry as specified', (context, done) => {
+  describe('POST /entries/:id', () => {
+    it('should change the entry as specified and redirect to home', (context, done) => {
       const entries = [
         {
           id: 0,
@@ -115,7 +115,7 @@ describe('App', () => {
       const fs = {
         readFileSync: context.mock.fn(() => JSON.stringify(entries)),
         existsSync: context.mock.fn(() => true),
-        writeFile: context.mock.fn(),
+        writeFile: context.mock.fn((_, __, callback) => callback()),
       };
 
       const entryRepository = new EntryRepository(null, fs, null);
@@ -124,12 +124,9 @@ describe('App', () => {
       const app = createApp({ entryRepository, idGenerator });
 
       request(app)
-        .patch('/entries/0')
-        .set('cookie', ['userId=567'])
-        .send({ title: 'tuesday grocery', amount: 1000 })
-        .expect(200)
-        .expect('content-type', /application\/json/)
-        .expect({ ...entries[0], amount: 1000, title: 'tuesday grocery' })
+        .post('/entries/0')
+        .send('amount=5000&title=tuesday+grocery')
+        .expect(302)
         .end(done);
     });
   });

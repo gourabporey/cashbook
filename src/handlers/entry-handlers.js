@@ -15,11 +15,32 @@ const createEntry = (req, res) => {
   res.status(201).json(entry.toJSON());
 };
 
-const editEntry = (req, res) => {
-  const newData = req.body;
-  const id = +req.params.id;
-  const updatedEntry = req.app.entryRepository.modifyEntry(id, newData);
-  res.status(200).json(updatedEntry);
+const parseData = (rawData) => {
+  return Object.fromEntries(Object.entries(rawData).filter(([, val]) => val));
 };
 
-module.exports = { serveEntries, createEntry, editEntry };
+const editEntry = (req, res) => {
+  const newData = parseData(req.body);
+  const id = +req.params.id;
+  req.app.entryRepository.modifyEntry(id, newData, () => {
+    res.status(302).location('/').end();
+  });
+};
+
+const serveEditPage = (req, res) => {
+  const form = `
+    <form action='/entries/${req.params.id}' method='POST'>
+      <label for='amount'>Amount</label>
+      <input type='number' name='amount' id='amount'></input>
+
+      <label for='title'>Title</label>
+      <input type='text' name='title' id='title'></input>
+
+      <input type='submit' value='submit'></input>
+    </form>
+  `;
+
+  res.send(form);
+};
+
+module.exports = { serveEntries, createEntry, editEntry, serveEditPage };

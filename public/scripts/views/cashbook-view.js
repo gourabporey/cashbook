@@ -93,10 +93,11 @@ class CashbookView {
     ].map(([value, elemName]) => ['div', { class: elemName }, value]);
 
     const editBtn = generateElement([
-      'input',
-      { class: 'edit', type: 'button', value: 'edit' },
+      'a',
+      { class: 'edit', href: `/entries/${id}/edit` },
       'edit',
     ]);
+
     const entryHtml = generateElement(['div', { class: 'entry' }, elements]);
     entryHtml.append(editBtn);
 

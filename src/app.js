@@ -5,6 +5,7 @@ const {
   serveEntries,
   createEntry,
   editEntry,
+  serveEditPage,
 } = require('./handlers/entry-handlers');
 const { logger } = require('./middlewares/logger');
 
@@ -16,11 +17,13 @@ const createApp = ({ entryRepository, idGenerator }) => {
 
   app.use(cookieParser);
   app.use(express.json());
+  app.use(express.urlencoded());
   app.use(logger);
 
   app.get('/entries', serveEntries);
   app.post('/entries', createEntry);
-  app.patch('/entries/:id', editEntry);
+  app.post('/entries/:id', editEntry);
+  app.get('/entries/:id/edit', serveEditPage);
 
   app.use(express.static('public'));
 

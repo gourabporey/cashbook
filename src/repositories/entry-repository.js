@@ -22,11 +22,12 @@ class EntryRepository {
     return rawEntries.map((entryInfo) => new Entry(entryInfo));
   }
 
-  #update() {
+  #update(callback) {
     const entries = this.serializeEntries();
 
-    this.#fs.writeFile(this.#path, JSON.stringify(entries), (err) => {
+    this.#fs.writeFile(this.#path, JSON.stringify(entries, null, 2), (err) => {
       if (err) this.#logger.log(err);
+      if (callback) callback();
     });
   }
 
@@ -54,16 +55,12 @@ class EntryRepository {
     return this.getAll().find(matchId(id));
   }
 
-  modifyEntry(id, data) {
+  modifyEntry(id, data, callback) {
     const indexOfEntry = this.getAll().findIndex(matchId(id));
     const entry = this.#entries[indexOfEntry];
+    if (entry) entry.modify(data);
 
-    let newEntry;
-    if (entry) newEntry = entry.modify(data).toJSON();
-
-    this.#update();
-
-    return newEntry;
+    this.#update(callback);
   }
 
   deleteEntryOfId(id) {
