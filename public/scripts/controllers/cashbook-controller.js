@@ -17,7 +17,9 @@ class CashbookController {
 
   #getAndRenderEntries() {
     this.#apiService.getAllEntries((entries) => {
-      entries.forEach((entry) => this.#addAndRender(entry));
+      entries.forEach((entry) => {
+        this.#addAndRender(entry);
+      });
     });
   }
 
@@ -26,6 +28,7 @@ class CashbookController {
       this.#apiService.sendEntry(entry, (entry) => this.#addAndRender(entry));
     });
 
+    this.#view.setupListeners();
     this.#getAndRenderEntries();
   }
 }
