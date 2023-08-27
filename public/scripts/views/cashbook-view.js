@@ -62,6 +62,11 @@ class CashbookView {
 
   openForm(type) {
     const form = generateElement(formTemplate);
+    form
+      .querySelector('#amount-input-box')
+      .setAttribute('placeholder', `Enter your ${type}`);
+
+    form.querySelector('#cancel').onclick = () => document.location.reload();
 
     this.#transactionInputForm = transInputForm();
     this.#setupFormSubmitListener(form, type);

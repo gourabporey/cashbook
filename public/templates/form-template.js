@@ -9,7 +9,6 @@ const formTemplate = [
         name: 'amount',
         required: true,
         id: 'amount-input-box',
-        placeholder: 'Enter your amount',
       },
     ],
     [
@@ -23,5 +22,13 @@ const formTemplate = [
       },
     ],
     ['input', { type: 'submit', value: 'submit' }],
+    [
+      'input',
+      {
+        type: 'button',
+        value: 'cancel',
+        id: 'cancel',
+      },
+    ],
   ],
 ];
