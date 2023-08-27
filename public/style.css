@@ -1,8 +1,15 @@
+:root {
+  --color-blue: #7091f5;
+  --color-green: #04aa6d;
+  --color-red: #f31559;
+}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
+  color: rgb(77, 77, 77);
   font-size: 18px;
 }
 
@@ -27,6 +34,18 @@ header h1 {
 #summary {
   display: flex;
   gap: 1em;
+}
+
+#total-income {
+  border: 1px solid var(--color-green);
+}
+
+#total-expenses {
+  border: 1px solid var(--color-red);
+}
+
+#total-balance {
+  border: 1px solid var(--color-blue);
 }
 
 .total-transaction {
@@ -82,28 +101,37 @@ header h1 {
 
 .entries-log {
   display: flex;
-  flex-direction: column;
-  gap: 1em;
 }
 
 .entry {
-  display: flex;
-  gap: 7em;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr auto;
   margin-bottom: 1em;
   padding: 0.4em;
-  border: 1px solid rgb(207, 207, 207);
+  border: 1px solid rgba(207, 207, 207, 0.555);
   border-radius: 10px;
-  box-shadow: 0 0 2px gray;
-}
-
-.entry div:last-child {
-  margin-left: auto;
+  box-shadow: 0 0 2px rgba(128, 128, 128, 0.61);
 }
 
 .income {
-  color: green;
+  color: var(--color-green);
 }
 
 .expense {
-  color: red;
+  color: var(--color-red);
+}
+
+.amount {
+  text-align: right;
+  padding-right: 3em;
+}
+
+.edit {
+  text-align: right;
+  cursor: pointer;
+  padding: 0 10px;
+  border: 1px solid var(--color-blue);
+  color: var(--color-blue);
+  background-color: white;
+  border-radius: 5px;
 }

@@ -79,19 +79,26 @@ class CashbookView {
     });
   }
 
-  appendEntry({ type, amount, timeStamp, title }) {
-    const classes = ['entry'].concat(type).join(' ');
+  appendEntry({ type, amount, timeStamp, title, id }) {
     const [day, month, date, , time] = new Date(timeStamp)
       .toString()
       .split(' ');
 
     const formattedTime = [day, month, date, time].join(' ');
-    const elements = [formattedTime, title, amount].map((text) => [
-      'div',
-      {},
-      text,
+
+    const elements = [
+      [formattedTime, 'time'],
+      [title, `title ${type}`],
+      [amount, `amount ${type}`],
+    ].map(([value, elemName]) => ['div', { class: elemName }, value]);
+
+    const editBtn = generateElement([
+      'input',
+      { class: 'edit', type: 'button', value: 'edit' },
+      'edit',
     ]);
-    const entryHtml = generateElement(['div', { class: classes }, elements]);
+    const entryHtml = generateElement(['div', { class: 'entry' }, elements]);
+    entryHtml.append(editBtn);
 
     this.#entriesLog.append(entryHtml);
   }

@@ -45,4 +45,13 @@ module.exports = {
       },
     ],
   },
+
+  overrides: [
+    {
+      files: ['*cashbook-view.js', '*app.js'],
+      rules: {
+        'max-statements': 'off',
+      },
+    },
+  ],
 };
