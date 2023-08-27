@@ -41,4 +41,8 @@ class Cashbook {
   getEntries() {
     return this.#entries;
   }
+
+  clear() {
+    this.#entries = [];
+  }
 }

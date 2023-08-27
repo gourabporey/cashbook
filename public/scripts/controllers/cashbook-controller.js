@@ -16,6 +16,9 @@ class CashbookController {
   }
 
   #getAndRenderEntries() {
+    this.#cashbook.clear();
+    this.#view.clear();
+
     this.#apiService.getAllEntries((entries) => {
       entries.forEach((entry) => {
         this.#addAndRender(entry);
@@ -26,6 +29,10 @@ class CashbookController {
   start() {
     this.#view.onFormSubmit((entry) => {
       this.#apiService.sendEntry(entry, (entry) => this.#addAndRender(entry));
+    });
+
+    this.#view.onDeleteBtnClick((id) => {
+      this.#apiService.deleteEntryOfId(id, () => this.#getAndRenderEntries());
     });
 
     this.#view.setupListeners();

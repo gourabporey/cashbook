@@ -43,4 +43,17 @@ const serveEditPage = (req, res) => {
   res.send(form);
 };
 
-module.exports = { serveEntries, createEntry, editEntry, serveEditPage };
+const deleteEntry = (req, res) => {
+  const id = +req.params.id;
+  req.app.entryRepository.deleteEntryOfId(id, () => {
+    res.status(204).end();
+  });
+};
+
+module.exports = {
+  serveEntries,
+  createEntry,
+  editEntry,
+  serveEditPage,
+  deleteEntry,
+};

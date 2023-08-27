@@ -5,6 +5,7 @@ class CashbookView {
   #transactionInputForm;
 
   #sendDataOnFormSubmit;
+  #sendIdOfEntry;
 
   constructor({ summary, transTypeInput, entriesLog }) {
     this.#summary = summary;
@@ -14,6 +15,10 @@ class CashbookView {
 
   onFormSubmit(sendData) {
     this.#sendDataOnFormSubmit = sendData;
+  }
+
+  onDeleteBtnClick(sendId) {
+    this.#sendIdOfEntry = sendId;
   }
 
   #hideEntryInput() {
@@ -98,9 +103,21 @@ class CashbookView {
       'edit',
     ]);
 
+    const deleteBtn = generateElement([
+      'input',
+      { type: 'button', value: 'delete', class: 'delete' },
+      '',
+    ]);
+
+    deleteBtn.onclick = () => this.#sendIdOfEntry(id);
+
     const entryHtml = generateElement(['div', { class: 'entry' }, elements]);
-    entryHtml.append(editBtn);
+    entryHtml.append(editBtn, deleteBtn);
 
     this.#entriesLog.append(entryHtml);
+  }
+
+  clear() {
+    this.#entriesLog.innerHTML = '';
   }
 }

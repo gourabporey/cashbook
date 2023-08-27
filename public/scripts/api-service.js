@@ -17,3 +17,7 @@ const sendEntry = (entry, onResponse) => {
 const getAllEntries = (onResponse) => {
   sendJsonRequest('/entries', null, onResponse);
 };
+
+const deleteEntryOfId = (id, onResponse) => {
+  fetch(`/entries/${id}`, { method: 'DELETE' }).then(onResponse);
+};

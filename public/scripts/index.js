@@ -16,7 +16,7 @@ const getSummaryContainers = () => {
 
 const main = () => {
   const cashbook = new Cashbook();
-  const apiService = { sendEntry, getAllEntries };
+  const apiService = { sendEntry, getAllEntries, deleteEntryOfId };
 
   const summary = getSummaryContainers();
   const entriesLog = getEntriesContainer();

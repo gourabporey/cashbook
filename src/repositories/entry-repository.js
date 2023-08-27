@@ -63,10 +63,10 @@ class EntryRepository {
     this.#update(callback);
   }
 
-  deleteEntryOfId(id) {
+  deleteEntryOfId(id, callback) {
     const indexOfEntry = this.getAll().findIndex(matchId(id));
     this.#entries.splice(indexOfEntry, 1);
-    this.#update();
+    this.#update(callback);
   }
 
   findEntries(options) {
