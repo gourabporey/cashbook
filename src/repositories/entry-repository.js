@@ -57,8 +57,13 @@ class EntryRepository {
   modifyEntry(id, data) {
     const indexOfEntry = this.getAll().findIndex(matchId(id));
     const entry = this.#entries[indexOfEntry];
-    if (entry) entry.modify(data);
+
+    let newEntry;
+    if (entry) newEntry = entry.modify(data).toJSON();
+
     this.#update();
+
+    return newEntry;
   }
 
   deleteEntryOfId(id) {

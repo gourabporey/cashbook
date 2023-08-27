@@ -97,4 +97,40 @@ describe('App', () => {
         .end(done);
     });
   });
+
+  describe('PATCH /entries/:id', () => {
+    it('should change the entry as specified', (context, done) => {
+      const entries = [
+        {
+          id: 0,
+          timeStamp: new Date().toUTCString(),
+          type: 'income',
+          amount: 800,
+          userId: 567,
+          category: 'grocery',
+          title: 'monday grocery',
+        },
+      ];
+
+      const fs = {
+        readFileSync: context.mock.fn(() => JSON.stringify(entries)),
+        existsSync: context.mock.fn(() => true),
+        writeFile: context.mock.fn(),
+      };
+
+      const entryRepository = new EntryRepository(null, fs, null);
+      const idGenerator = generateId();
+
+      const app = createApp({ entryRepository, idGenerator });
+
+      request(app)
+        .patch('/entries/0')
+        .set('cookie', ['userId=567'])
+        .send({ title: 'tuesday grocery', amount: 1000 })
+        .expect(200)
+        .expect('content-type', /application\/json/)
+        .expect({ ...entries[0], amount: 1000, title: 'tuesday grocery' })
+        .end(done);
+    });
+  });
 });

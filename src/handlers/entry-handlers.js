@@ -15,4 +15,11 @@ const createEntry = (req, res) => {
   res.status(201).json(entry.toJSON());
 };
 
-module.exports = { serveEntries, createEntry };
+const editEntry = (req, res) => {
+  const newData = req.body;
+  const id = +req.params.id;
+  const updatedEntry = req.app.entryRepository.modifyEntry(id, newData);
+  res.status(200).json(updatedEntry);
+};
+
+module.exports = { serveEntries, createEntry, editEntry };
