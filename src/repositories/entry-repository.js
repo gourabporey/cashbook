@@ -54,6 +54,13 @@ class EntryRepository {
     return this.getAll().find(matchId(id));
   }
 
+  modifyEntry(id, data) {
+    const indexOfEntry = this.getAll().findIndex(matchId(id));
+    const entry = this.#entries[indexOfEntry];
+    if (entry) entry.modify(data);
+    this.#update();
+  }
+
   deleteEntryOfId(id) {
     const indexOfEntry = this.getAll().findIndex(matchId(id));
     this.#entries.splice(indexOfEntry, 1);

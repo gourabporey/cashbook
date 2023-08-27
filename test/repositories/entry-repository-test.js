@@ -150,4 +150,32 @@ describe('EntryRepository', () => {
       assert.deepStrictEqual(entryRepo.serializeEntries(), [entryData]);
     });
   });
+
+  describe('replaceEntry', () => {
+    it('should replace the entry finding it by id', (context) => {
+      const entryData = {
+        id: 0,
+        timeStamp: new Date().toUTCString(),
+        type: 'income',
+        amount: 800,
+        userId: 567,
+        category: 'grocery',
+        title: 'monday grocery',
+      };
+
+      const fs = {
+        existsSync: context.mock.fn(() => true),
+        writeFile: context.mock.fn((path, content, callback) => callback()),
+        readFileSync: context.mock.fn(() => JSON.stringify([entryData])),
+      };
+
+      const entryRepo = new EntryRepository(null, fs);
+
+      entryRepo.modifyEntry(0, { amount: 900 });
+
+      assert.deepStrictEqual(entryRepo.serializeEntries(), [
+        { ...entryData, amount: 900 },
+      ]);
+    });
+  });
 });
