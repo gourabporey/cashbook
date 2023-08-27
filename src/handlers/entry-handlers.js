@@ -12,7 +12,7 @@ const createEntry = (req, res) => {
   const entry = new Entry(entryData);
   req.app.entryRepository.addEntry(entry);
 
-  res.status(201).json(entry);
+  res.status(201).json(entry.toJSON());
 };
 
 module.exports = { serveEntries, createEntry };
