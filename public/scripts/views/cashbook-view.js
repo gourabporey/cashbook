@@ -24,7 +24,8 @@ class CashbookView {
     this.#transactionTypeInput.classList.remove('hidden');
   }
 
-  #hideForm() {
+  #hideForm(form) {
+    this.#transactionInputForm.removeChild(form);
     this.#transactionInputForm.classList.add('hidden');
   }
 
@@ -50,7 +51,7 @@ class CashbookView {
       this.#sendDataOnFormSubmit(entryData);
 
       this.#showEntryInput();
-      this.#hideForm();
+      this.#hideForm(form);
     };
   }
 
