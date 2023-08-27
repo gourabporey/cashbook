@@ -10,11 +10,12 @@
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
   color: rgb(77, 77, 77);
-  font-size: 18px;
+  font-size: 20px;
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 3em;
+  color: var(--color-green);
 }
 
 #page-wrapper {
@@ -48,6 +49,28 @@ header h1 {
   border: 1px solid var(--color-blue);
 }
 
+input#income {
+  cursor: pointer;
+  border: 1px solid var(--color-green);
+  color: var(--color-green);
+  background-color: white;
+}
+
+input#income:hover {
+  box-shadow: 0 0 3px 0 var(--color-green);
+}
+
+input#expense {
+  cursor: pointer;
+  border: 1px solid var(--color-red);
+  color: var(--color-red);
+  background-color: white;
+}
+
+input#expense:hover {
+  box-shadow: 0 0 3px 0 var(--color-red);
+}
+
 .total-transaction {
   width: 100%;
   padding: 0.5em;
@@ -58,7 +81,7 @@ header h1 {
   flex-direction: column;
 
   border: 2px solid rgb(156, 156, 156);
-  border-radius: 50px;
+  border-radius: 20px;
 }
 
 #transaction-input-container {
