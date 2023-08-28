@@ -8,7 +8,6 @@ const signupUser = (req, res) => {
     if (err) return res.status(500).end();
     res.cookie('username', username);
     res.cookie('authToken', token);
-    console.log('hello');
     res.status(200).end();
   });
 };
