@@ -159,6 +159,8 @@ input#expense:hover {
   color: var(--color-blue);
   background-color: white;
   border-radius: 5px;
+  display: grid;
+  align-content: center;
 }
 
 .edit:hover {
