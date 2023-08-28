@@ -8,12 +8,13 @@ const validateCredentials = (req, res, next) => {
   const NAME_REGEX = /\w+/;
   const PASSWORD_REGEX = /\w+/;
 
-  if (
-    EMAIL_REGEX.test(email) &&
-    NAME_REGEX.test(name) &&
-    PASSWORD_REGEX.test(password)
-  )
-    next();
+  const shouldProceed = [
+    [EMAIL_REGEX, email],
+    [NAME_REGEX, name],
+    [PASSWORD_REGEX, password],
+  ].every(([regex, text]) => regex.test(text));
+
+  if (shouldProceed) next();
   else res.status(400).end();
 };
 
