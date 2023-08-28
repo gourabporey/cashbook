@@ -14,6 +14,7 @@ const main = () => {
   const encryptor = new Encryptor(crypto);
   const entryRepository = new EntryRepository(ENTRY_PATH, fs, console);
   const userRepository = new UserRepository(USERS_PATH, fs, encryptor);
+  userRepository.restore();
 
   const idGenerator = generateId();
 

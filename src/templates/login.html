@@ -1,0 +1,38 @@
+<html lang="en">
+  <head>
+    <title>Login Form</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div id="page-wrapper">
+      <h1>Login</h1>
+
+      <form action="/login" method="POST" class="login-form">
+        <div class="form-item">
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Enter your name"
+            required />
+        </div>
+
+        <div class="form-item">
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Enter password"
+            required />
+        </div>
+
+        <div class="form-item">
+          <input type="submit" value="login" id="submit" />
+        </div>
+      </form>
+      <p class="text-align-center">
+        Wanna create an account? <a href="/signup">Signup here</a>
+      </p>
+    </div>
+  </body>
+</html>

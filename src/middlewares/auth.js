@@ -16,4 +16,31 @@ const validateCredentials = (req, res, next) => {
   else res.status(400).end();
 };
 
-module.exports = { serveSignupPage, validateCredentials };
+const authenticator = (req, res, next) => {
+  const { username, authToken } = req.cookies;
+  const isValidToken = req.app.userRepository.validateTokens({
+    username,
+    hashPassword: authToken,
+  });
+
+  if (!isValidToken) return res.status(302).location('/signup').end();
+
+  next();
+};
+
+const authenticateUser = (req, res, next) => {
+  const credentials = req.body;
+  const { validUsername, validPassword } =
+    req.app.userRepository.validateCredentials(credentials);
+
+  if (!validUsername || !validPassword) return res.status(401).end();
+
+  next();
+};
+
+module.exports = {
+  serveSignupPage,
+  validateCredentials,
+  authenticator,
+  authenticateUser,
+};

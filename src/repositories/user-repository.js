@@ -39,6 +39,16 @@ class UserRepository {
     return this.#users.find((user) => user.username === username);
   }
 
+  validateTokens({ username, hashPassword }) {
+    return this.#users.some(
+      (user) => user.username === username && user.hashPassword === hashPassword
+    );
+  }
+
+  getToken(username) {
+    return this.#findUser(username).hashPassword;
+  }
+
   validateCredentials({ username, password }) {
     const user = this.#findUser(username);
     if (!user) return { validUsername: false };

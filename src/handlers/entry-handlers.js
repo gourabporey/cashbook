@@ -1,12 +1,14 @@
 const Entry = require('../models/entry');
 
 const serveEntries = (req, res) => {
-  res.json(req.app.entryRepository.serializeEntries());
+  res.json(
+    req.app.entryRepository.findEntries({ userId: req.cookies.authToken })
+  );
 };
 
 const createEntry = (req, res) => {
   const entryData = req.body;
-  entryData.userId = +req.cookies.userId;
+  entryData.userId = req.cookies.authToken;
   entryData.id = req.app.idGenerator.next().value;
 
   const entry = new Entry(entryData);
