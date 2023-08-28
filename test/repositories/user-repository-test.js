@@ -57,7 +57,7 @@ describe('UserRepository', () => {
 
       const sendToken = context.mock.fn();
 
-      userRepository.addUser('gourab', 'gourab1234', sendToken);
+      userRepository.addUser('gourab', '1234', sendToken);
 
       assert.deepStrictEqual(userRepository.toJSON(), [
         { username: 'gourab', hashPassword: 'gourab1234' },
@@ -134,7 +134,7 @@ describe('UserRepository', () => {
       assert.deepStrictEqual(
         userRepository.validateCredentials({
           username: 'gourab',
-          password: 'gourab845759',
+          password: '845759',
         }),
         { validUsername: true, validPassword: true }
       );

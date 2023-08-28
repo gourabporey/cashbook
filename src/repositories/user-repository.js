@@ -54,12 +54,15 @@ class UserRepository {
     if (!user) return { validUsername: false };
 
     const { hashPassword } = user;
-    const validPassword = this.#encryptor.match(password, hashPassword);
+    const validPassword = this.#encryptor.match(
+      username + password,
+      hashPassword
+    );
     return { validPassword, validUsername: true };
   }
 
   addUser(username, password, sendToken) {
-    const hashPassword = this.#encryptor.encrypt(password);
+    const hashPassword = this.#encryptor.encrypt(username + password);
     const newUser = new User({ username, hashPassword });
     this.#users.push(newUser);
     this.save((err) => sendToken(err, hashPassword));
