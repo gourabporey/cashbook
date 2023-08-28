@@ -5,7 +5,7 @@ const { validateCredentials } = require('../../src/middlewares/auth');
 describe('validateCredentials', () => {
   it('should call the next function when valid credentials are provided in request body', (context) => {
     const req = {
-      body: { name: 'gourab', email: 'gourab@gmail.com', password: 'gourab' },
+      body: { username: 'gourab', password: 'gourab' },
     };
     const res = {
       status: context.mock.fn(() => this),
@@ -20,7 +20,7 @@ describe('validateCredentials', () => {
 
   it('should call the res.end and status function when invalid credentials are provided in request body', (context) => {
     const req = {
-      body: { name: 'gourab', email: 'gourab', password: 'gourab' },
+      body: { password: 'gourab' },
     };
 
     const res = { end: context.mock.fn(), status: context.mock.fn(() => res) };

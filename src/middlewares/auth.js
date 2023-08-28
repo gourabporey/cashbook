@@ -3,16 +3,14 @@ const serveSignupPage = (_, res) => {
 };
 
 const validateCredentials = (req, res, next) => {
-  const { email, name, password } = req.body;
-  const EMAIL_REGEX = /^[\w\.]+@[\w\.]+\.[\w]+$/;
+  const { username, password } = req.body;
   const NAME_REGEX = /\w+/;
   const PASSWORD_REGEX = /\w+/;
 
   const shouldProceed = [
-    [EMAIL_REGEX, email],
-    [NAME_REGEX, name],
+    [NAME_REGEX, username],
     [PASSWORD_REGEX, password],
-  ].every(([regex, text]) => regex.test(text));
+  ].every(([regex, text]) => text && regex.test(text));
 
   if (shouldProceed) next();
   else res.status(400).end();

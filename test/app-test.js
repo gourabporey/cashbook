@@ -1,4 +1,5 @@
 const request = require('supertest');
+const assert = require('assert');
 const { describe, it } = require('node:test');
 
 const { createApp } = require('../src/app.js');
@@ -139,6 +140,29 @@ describe('App', () => {
         .get('/signup')
         .expect(200)
         .expect('content-type', /text\/html/)
+        .end(done);
+    });
+  });
+
+  describe('POST /signup', () => {
+    it('should successfully signup a new user', (context, done) => {
+      const addUser = context.mock.fn((_, __, callback) => callback());
+      const userRepository = {
+        existsUser: context.mock.fn(() => false),
+        addUser,
+      };
+
+      const app = createApp({
+        entryRepository: null,
+        idGenerator: null,
+        userRepository,
+      });
+
+      request(app)
+        .post('/signup')
+        .set('content-type', 'application/x-www-form-urlencoded')
+        .send('username=gourab&password=1234')
+        .expect(200)
         .end(done);
     });
   });

@@ -26,7 +26,7 @@ class Cashbook {
   }
 
   replace(entry) {
-    const id = entry.id;
+    const { id } = entry;
     const indexOfEntry = this.#findIndexOfEntry(id);
     this.#entries[indexOfEntry] = entry;
     return this;

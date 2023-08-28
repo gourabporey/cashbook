@@ -9,13 +9,15 @@ const {
   deleteEntry,
 } = require('./handlers/entry-handlers');
 const { logger } = require('./middlewares/logger');
-const { serveSignupPage } = require('./middlewares/auth');
+const { serveSignupPage, validateCredentials } = require('./middlewares/auth');
+const { signupUser } = require('./handlers/auth-handlers');
 
-const createApp = ({ entryRepository, idGenerator }) => {
+const createApp = ({ entryRepository, idGenerator, userRepository }) => {
   const app = express();
 
   app.entryRepository = entryRepository;
   app.idGenerator = idGenerator;
+  app.userRepository = userRepository;
 
   app.use(cookieParser);
   app.use(express.json());
@@ -29,7 +31,7 @@ const createApp = ({ entryRepository, idGenerator }) => {
   app.get('/entries/:id/edit', serveEditPage);
 
   app.get('/signup', serveSignupPage);
-  // app.post('/signup', handlePostSignup);
+  app.post('/signup', validateCredentials, signupUser);
 
   app.use(express.static('public'));
 

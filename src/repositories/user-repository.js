@@ -43,7 +43,7 @@ class UserRepository {
     const user = this.#findUser(username);
     if (!user) return { validUsername: false };
 
-    const hashPassword = user.hashPassword;
+    const { hashPassword } = user;
     const validPassword = this.#encryptor.match(password, hashPassword);
     return { validPassword, validUsername: true };
   }
