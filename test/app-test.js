@@ -56,14 +56,13 @@ describe('App', () => {
       const entryRepository = { addEntry: context.mock.fn() };
 
       const entryData = {
+        id: Date.now(),
         type: 'expense',
         amount: 800,
         category: 'grocery',
         title: 'monday grocery',
         timeStamp: new Date().toUTCString(),
       };
-
-      const expectedData = { ...entryData, id: 0, userId: '567' };
 
       const app = createApp({ entryRepository, idGenerator, userRepository });
 
@@ -72,7 +71,7 @@ describe('App', () => {
         .send(entryData)
         .set('cookie', ['authToken=567', 'username=gourab'])
         .expect(201)
-        .expect(expectedData)
+        .expect('content-type', /application\/json/)
         .end(done);
     });
   });

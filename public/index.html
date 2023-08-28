@@ -19,39 +19,44 @@
 
   <body>
     <main id="page-wrapper">
-      <header><h1>Cashbook</h1></header>
+      <header>
+        <h1>Cashbook</h1>
+        <a href="/logout">logout</a>
+      </header>
 
-      <div id="summary">
-        <div id="total-income" class="total-transaction">
-          <div>Total Income</div>
-          <div id="income">0</div>
+      <div class="content-wrapper">
+        <div id="summary">
+          <div id="total-income" class="total-transaction">
+            <div>Total Income</div>
+            <div id="income">0</div>
+          </div>
+          <div id="total-expenses" class="total-transaction">
+            <div>Total Expense</div>
+            <div id="expense">0</div>
+          </div>
+          <div id="total-balance" class="total-transaction">
+            <div>Balance</div>
+            <div id="balance">0</div>
+          </div>
         </div>
-        <div id="total-expenses" class="total-transaction">
-          <div>Total Expense</div>
-          <div id="expense">0</div>
+
+        <div id="transaction-input-container">
+          <input
+            type="button"
+            id="income"
+            class="transaction-input"
+            value="+ IN" />
+          <input
+            type="button"
+            id="expense"
+            class="transaction-input"
+            value="- OUT" />
         </div>
-        <div id="total-balance" class="total-transaction">
-          <div>Balance</div>
-          <div id="balance">0</div>
-        </div>
+
+        <div id="transaction-input-form" class="hidden"></div>
+
+        <div id="entries-log"></div>
       </div>
-
-      <div id="transaction-input-container">
-        <input
-          type="button"
-          id="income"
-          class="transaction-input"
-          value="+ IN" />
-        <input
-          type="button"
-          id="expense"
-          class="transaction-input"
-          value="- OUT" />
-      </div>
-
-      <div id="transaction-input-form" class="hidden"></div>
-
-      <div id="entries-log"></div>
     </main>
   </body>
 </html>

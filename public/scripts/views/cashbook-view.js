@@ -60,9 +60,9 @@ class CashbookView {
 
   openForm(type) {
     const form = generateElement(formTemplate);
-    form
-      .querySelector('#amount-input-box')
-      .setAttribute('placeholder', `Enter your ${type}`);
+    const amountInputBox = form.querySelector('#amount-input-box');
+    amountInputBox.setAttribute('placeholder', `Enter your ${type}`);
+    amountInputBox.classList.add(`input-${type}`);
 
     form.querySelector('#cancel').onclick = () => document.location.reload();
 

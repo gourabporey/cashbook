@@ -23,6 +23,7 @@ const parseData = (rawData) => {
 
 const editEntry = (req, res) => {
   const newData = parseData(req.body);
+  newData.amount = +newData.amount;
   const id = +req.params.id;
   req.app.entryRepository.modifyEntry(id, newData, () => {
     res.status(302).location('/').end();

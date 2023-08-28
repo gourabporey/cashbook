@@ -27,4 +27,10 @@ const loginUser = (req, res) => {
   res.status(302).location('/').end();
 };
 
-module.exports = { signupUser, loginUser, serveLoginPage };
+const logoutUser = (req, res) => {
+  res.clearCookie('username');
+  res.clearCookie('authToken');
+  res.status(302).location('/').end();
+};
+
+module.exports = { signupUser, loginUser, serveLoginPage, logoutUser };

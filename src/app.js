@@ -19,6 +19,7 @@ const {
   signupUser,
   loginUser,
   serveLoginPage,
+  logoutUser,
 } = require('./handlers/auth-handlers');
 
 const createApp = ({ entryRepository, idGenerator, userRepository }) => {
@@ -40,6 +41,7 @@ const createApp = ({ entryRepository, idGenerator, userRepository }) => {
   app.post('/login', authenticateUser, loginUser);
 
   app.use(authenticator);
+  app.get('/logout', logoutUser);
 
   app.get('/entries', serveEntries);
   app.post('/entries', createEntry);
