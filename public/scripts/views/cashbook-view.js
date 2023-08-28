@@ -51,8 +51,6 @@ class CashbookView {
         timeStamp: Date.now(),
       };
 
-      document.cookie = document.cookie || `userId=${Date.now()}`;
-
       this.#sendDataOnFormSubmit(entryData);
 
       this.#showEntryInput();
