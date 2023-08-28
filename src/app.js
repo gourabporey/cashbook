@@ -9,6 +9,7 @@ const {
   deleteEntry,
 } = require('./handlers/entry-handlers');
 const { logger } = require('./middlewares/logger');
+const serveSignupPage = require('./middlewares/auth');
 
 const createApp = ({ entryRepository, idGenerator }) => {
   const app = express();
@@ -26,6 +27,8 @@ const createApp = ({ entryRepository, idGenerator }) => {
   app.post('/entries/:id', editEntry);
   app.delete('/entries/:id', deleteEntry);
   app.get('/entries/:id/edit', serveEditPage);
+
+  app.get('/signup', serveSignupPage);
 
   app.use(express.static('public'));
 

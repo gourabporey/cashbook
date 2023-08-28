@@ -130,4 +130,16 @@ describe('App', () => {
         .end(done);
     });
   });
+
+  describe('GET /signup', () => {
+    it('should send the signup page', (_, done) => {
+      const app = createApp({ entryRepository: null, idGenerator: null });
+
+      request(app)
+        .get('/signup')
+        .expect(200)
+        .expect('content-type', /text\/html/)
+        .end(done);
+    });
+  });
 });
