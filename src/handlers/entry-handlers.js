@@ -1,3 +1,4 @@
+const fs = require('fs');
 const Entry = require('../models/entry');
 
 const serveEntries = (req, res) => {
@@ -31,19 +32,10 @@ const editEntry = (req, res) => {
 };
 
 const serveEditPage = (req, res) => {
-  const form = `
-    <form action='/entries/${req.params.id}' method='POST'>
-      <label for='amount'>Amount</label>
-      <input type='number' name='amount' id='amount'></input>
-
-      <label for='title'>Title</label>
-      <input type='text' name='title' id='title'></input>
-
-      <input type='submit' value='submit'></input>
-    </form>
-  `;
-
-  res.send(form);
+  fs.readFile('./src/templates/change-entry.html', 'utf8', (err, data) => {
+    const form = data.replace('$action', `/entries/${req.params.id}`);
+    res.send(form);
+  });
 };
 
 const deleteEntry = (req, res) => {

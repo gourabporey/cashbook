@@ -76,6 +76,23 @@ describe('App', () => {
     });
   });
 
+  describe('GET /entries/:id/edit', () => {
+    it('should serve the edit page', (context, done) => {
+      const idGenerator = generateId();
+      const userRepository = { validateTokens: () => true };
+      const entryRepository = { addEntry: context.mock.fn() };
+
+      const app = createApp({ entryRepository, idGenerator, userRepository });
+
+      request(app)
+        .get('/entries/0/edit')
+        .set('cookie', ['authToken=567', 'username=gourab'])
+        .expect(200)
+        .expect('content-type', /text\/html/)
+        .end(done);
+    });
+  });
+
   describe('POST /entries/:id', () => {
     it('should change the entry as specified and redirect to home', (context, done) => {
       const entryRepository = {
@@ -90,6 +107,24 @@ describe('App', () => {
         .post('/entries/0')
         .send('amount=5000&title=tuesday+grocery')
         .expect(302)
+        .end(done);
+    });
+  });
+
+  describe('DELETE /entries/:id', () => {
+    it('should delete the entry specified by the id', (context, done) => {
+      const idGenerator = generateId();
+      const userRepository = { validateTokens: () => true };
+      const entryRepository = {
+        deleteEntryOfId: context.mock.fn((id, callback) => callback()),
+      };
+
+      const app = createApp({ entryRepository, idGenerator, userRepository });
+
+      request(app)
+        .delete('/entries/0')
+        .set('cookie', ['authToken=567', 'username=gourab'])
+        .expect(204)
         .end(done);
     });
   });

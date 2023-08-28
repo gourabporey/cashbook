@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title>Change Entry</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main id="page-wrapper">
+      <header>
+        <h1>Cashbook</h1>
+        <a href="/logout">logout</a>
+      </header>
+
+      <div class="content-wrapper">
+        <form method="POST" action="$action" id="edit-entry-form">
+          <div class="form-item">
+            <label for="amount">Amount</label>
+            <input
+              type="number"
+              name="amount"
+              id="amount"
+              placeholder="Enter new amount"
+              required />
+          </div>
+
+          <div class="form-item">
+            <label for="title">Title</label>
+            <input
+              type="text"
+              name="title"
+              id="title"
+              placeholder="Enter new title"
+              required />
+          </div>
+
+          <input type="submit" value="submit" required />
+        </form>
+      </div>
+    </main>
+  </body>
+</html>
