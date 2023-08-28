@@ -1,11 +1,38 @@
 <html lang="en">
   <head>
     <title>Signup</title>
-    <link rel="stylesheet" href="/style.css" />
+    <style>
+      * {
+        font-family: system-ui, 'Helvetica Neue', sans-serif;
+        font-size: 20px;
+      }
+
+      #page-wrapper {
+        display: grid;
+        place-content: center;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 2em;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 1em;
+      }
+
+      input {
+        width: 100%;
+        padding: 0.3em;
+      }
+    </style>
   </head>
   <body>
     <div id="page-wrapper">
-      <h1>Signup</h1>
+      <h1>Signup form</h1>
 
       <form action="/signup" method="POST" class="signup-form">
         <div class="form-item">

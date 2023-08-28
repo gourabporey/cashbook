@@ -14,7 +14,7 @@ const signupUser = (req, res) => {
 };
 
 const serveLoginPage = (req, res) => {
-  res.sendFile('/login.html', { root: 'src/templates' });
+  res.sendFile(process.env.PWD + '/src/templates/login.html');
 };
 
 const loginUser = (req, res) => {
