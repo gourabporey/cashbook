@@ -2,6 +2,7 @@ const transInputForm = () => document.querySelector('#transaction-input-form');
 const getAmountInputBox = () => document.querySelector('#amount-input-box');
 const getTitleInputBox = () => document.querySelector('#title-input-box');
 const getEntriesContainer = () => document.getElementById('entries-log');
+const getProfileNameContainer = () => document.getElementById('profile-name');
 
 const transInputContainer = () =>
   document.querySelector('#transaction-input-container');
@@ -14,7 +15,20 @@ const getSummaryContainers = () => {
   };
 };
 
+const parseCookies = (cookies = '') =>
+  Object.fromEntries(
+    cookies.split('; ').map((cookieValue) => cookieValue.split('='))
+  );
+
+const showUsername = () => {
+  const { username } = parseCookies(document.cookie);
+  const profileNameContainer = getProfileNameContainer();
+  profileNameContainer.innerText = `Welcome ${username}`;
+};
+
 const main = () => {
+  showUsername();
+
   const cashbook = new Cashbook();
   const apiService = { sendEntry, getAllEntries, deleteEntryOfId };
 
