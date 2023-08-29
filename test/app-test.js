@@ -1,9 +1,7 @@
 const request = require('supertest');
-const assert = require('assert');
 const { describe, it } = require('node:test');
 
 const { createApp } = require('../src/app.js');
-const EntryRepository = require('../src/repositories/entry-repository.js');
 const { generateId } = require('../src/id-generator.js');
 
 describe('App', () => {
@@ -143,10 +141,11 @@ describe('App', () => {
 
   describe('POST /signup', () => {
     it('should successfully signup a new user', (context, done) => {
-      const addUser = context.mock.fn((_, __, callback) => callback());
+      const addUser = context.mock.fn((_, __, callback) => callback(false));
       const userRepository = {
         existsUser: context.mock.fn(() => false),
         addUser,
+        getToken: context.mock.fn(),
       };
 
       const app = createApp({

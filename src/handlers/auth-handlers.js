@@ -5,11 +5,16 @@ const signupUser = (req, res) => {
   if (userRepository.existsUser(username))
     return res
       .status(400)
-      .send(`<p>Account exits login instead. <a href='/login'>Login</a></p>`);
+      .send("<p>Account exits login instead. <a href='/login'>Login</a></p>");
 
   userRepository.addUser(username, password, (err) => {
     if (err) return res.status(500).end();
-    res.status(302).location('/login').end();
+
+    const authToken = req.app.userRepository.getToken(username);
+    res.cookie('username', username);
+    res.cookie('authToken', authToken);
+
+    res.status(302).location('/').end();
   });
 };
 
