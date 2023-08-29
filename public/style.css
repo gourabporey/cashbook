@@ -21,6 +21,15 @@ header {
   background-color: #04aa6d;
 }
 
+#heading {
+  border: none;
+}
+
+#header:hover {
+  border: none;
+  cursor: pointer;
+}
+
 h1 {
   font-size: 3em;
   text-align: center;

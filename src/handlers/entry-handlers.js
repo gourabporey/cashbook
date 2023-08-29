@@ -34,7 +34,8 @@ const editEntry = (req, res) => {
 const serveEditPage = (req, res) => {
   fs.readFile('./src/templates/change-entry.html', 'utf8', (err, data) => {
     const form = data.replace('$action', `/entries/${req.params.id}`);
-    res.send(form);
+    const profileAdded = form.replace('$username', req.cookies.username);
+    res.send(profileAdded);
   });
 };
 
