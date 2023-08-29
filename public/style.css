@@ -99,9 +99,9 @@ input {
 
 input#income {
   cursor: pointer;
-  border: 1px solid var(--color-green);
-  color: var(--color-green);
-  background-color: white;
+  border: none;
+  background-color: var(--color-green);
+  color: white;
 }
 
 input#income:hover {
@@ -110,9 +110,9 @@ input#income:hover {
 
 input#expense {
   cursor: pointer;
-  border: 1px solid var(--color-red);
-  color: var(--color-red);
-  background-color: white;
+  border: none;
+  color: white;
+  background-color: var(--color-red);
 }
 
 input#expense:hover {
@@ -145,7 +145,7 @@ input#expense:hover {
 }
 
 .transaction-input {
-  width: 100px;
+  width: 200px;
 }
 
 .hidden {
