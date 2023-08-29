@@ -10,9 +10,11 @@
       #page-wrapper {
         display: grid;
         place-content: center;
+        height: 80%;
       }
 
       h1 {
+        color: #04aa6d;
         text-align: center;
         font-size: 2em;
       }
@@ -20,19 +22,42 @@
       form {
         display: flex;
         flex-direction: column;
+        justify-content: stretch;
+        align-items: center;
         width: 100%;
-        gap: 1em;
+        gap: 2em;
+      }
+
+      .form-item {
+        width: 100%;
       }
 
       input {
         width: 100%;
         padding: 0.3em;
+        border: none;
+        border-bottom: 1px solid #04aa6d;
+        border-radius: 5px;
+      }
+
+      input:focus {
+        outline: none;
+      }
+
+      #submit {
+        border: none;
+        background-color: #04aa6d;
+        color: white;
+      }
+
+      a {
+        color: #04aa6d;
       }
     </style>
   </head>
   <body>
     <div id="page-wrapper">
-      <h1>Signup form</h1>
+      <h1>Cashbook</h1>
 
       <form action="/signup" method="POST" class="signup-form">
         <div class="form-item">
@@ -54,7 +79,7 @@
         </div>
 
         <div class="form-item">
-          <input type="submit" value="Submit" id="submit" />
+          <input type="submit" value="Signup" id="submit" />
         </div>
       </form>
       <p class="text-align-center">
