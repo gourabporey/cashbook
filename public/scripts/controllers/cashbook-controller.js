@@ -21,7 +21,6 @@ class CashbookController {
 
     this.#apiService.getAllEntries((entries) => {
       entries.forEach((entry) => {
-        console.log(entry);
         this.#addAndRender(entry);
       });
     });

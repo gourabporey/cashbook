@@ -121,6 +121,9 @@ class CashbookView {
   }
 
   clear() {
+    Object.values(this.#summary).forEach((summaryField) => {
+      summaryField.innerText = 0;
+    });
     this.#entriesLog.innerHTML = '';
   }
 }
