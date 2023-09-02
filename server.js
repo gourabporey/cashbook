@@ -19,7 +19,7 @@ const main = () => {
   const idGenerator = generateId();
 
   const app = createApp({ entryRepository, idGenerator, userRepository });
-  const PORT = 8000;
+  const PORT = process.env.PORT || 8000;
   app.listen(PORT, () => console.log('started listening on port', PORT));
 };
 
