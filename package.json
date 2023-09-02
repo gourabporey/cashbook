@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A simple expense tracker app",
   "main": "server.js",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "test": "node --test",
     "start": "node server.js",
