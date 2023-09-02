@@ -5,7 +5,7 @@ const signupUser = (req, res) => {
   if (userRepository.existsUser(username))
     return res
       .status(400)
-      .send("<p>Account exits login instead. <a href='/login'>Login</a></p>");
+      .send('<p>Account exits login instead. <a href="/login">Login</a></p>');
 
   userRepository.addUser(username, password, (err) => {
     if (err) return res.status(500).end();
@@ -19,7 +19,7 @@ const signupUser = (req, res) => {
 };
 
 const serveLoginPage = (req, res) => {
-  res.sendFile(process.env.PWD + '/src/templates/login.html');
+  res.sendFile(`${process.env.PWD}/src/templates/login.html`);
 };
 
 const loginUser = (req, res) => {
